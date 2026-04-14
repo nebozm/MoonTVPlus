@@ -267,7 +267,7 @@ export const DEFAULT_DANMAKU_SETTINGS: DanmakuSettings = {
   fontSize: 25,
   speed: 5,
   marginTop: 10,
-  marginBottom: 50,
+  marginBottom: '50%',
   maxlength: 100,
   filterRules: [],
   unlimited: false,
