@@ -11,11 +11,10 @@ RUN apk add --update --no-cache python3 build-base gcc && ln -sf /usr/bin/python
 RUN cd node_modules/better-sqlite3 && pnpm build-release
 
 # 仅复制依赖清单，提高构建缓存利用率
-# pnpm-lock.yaml 已在 .dockerignore 中排除，因此这里不复制锁文件
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # 安装所有依赖（含 devDependencies，后续会裁剪）
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # ---- 第 2 阶段：构建项目 ----
 FROM node:24-alpine AS builder
